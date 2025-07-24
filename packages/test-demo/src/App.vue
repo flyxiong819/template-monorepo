@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import { add } from 'base-lib';
+import { readConf } from './api';
+import { onMounted } from 'vue';
+import { to } from '@sonoscape/base-lib';
 
-const result = add(11, 22);
-console.log('Result of add(1, 2):', result);
+onMounted(async () => {
+  const [error, res] = await to(readConf());
+  if (error) {
+    console.error(error);
+    return;
+  }
+  console.log(res);
+});
 </script>
 
 <template>
