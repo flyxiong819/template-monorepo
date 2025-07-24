@@ -112,7 +112,7 @@ export async function responseChunked(llmResult: Ref<string>, url: string, param
 
     // 返回最后的所有结果
     return allRes;
-  } catch(error) {
+  } catch(error: any) {
     throw {
       retmsg: getErrorReason(error),
     };
